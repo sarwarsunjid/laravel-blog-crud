@@ -28,9 +28,9 @@ class BlogController extends Controller
      */
     public function create()
     {
-        
+
         return view('blog.create');
-        
+
     }
 
     /**
@@ -45,14 +45,14 @@ class BlogController extends Controller
             'title' => 'required',
             'slug' => 'required',
             'excerpt' => 'required',
-            'content' => 'required',  
+            'content' => 'required',
             'meta_title' => 'required',
             'meta_descr' => 'required',
             'meta_key' => 'required',
             'category' => 'required',
             'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-  
+
 
         $blog = new Blog;
         $blog->title = $request->title;
@@ -75,7 +75,7 @@ class BlogController extends Controller
 
         $blog->save();
         return redirect()->route('blog.index')
-                         ->with('success','Blog Has Been Created successfully'); 
+                         ->with('success','Blog Has Been Created successfully');
     }
 
     /**
@@ -86,7 +86,7 @@ class BlogController extends Controller
      */
     public function show($slug)
     {
-        
+
         $blog = Blog::where('slug',$slug)->get()->first();
         return view('blog.show', compact('blog', 'blog'));
     }
@@ -116,14 +116,14 @@ class BlogController extends Controller
             'title' => 'required',
             'slug' => 'required',
             'excerpt' => 'required',
-            'content' => 'required',  
+            'content' => 'required',
             'meta_title' => 'required',
             'meta_descr' => 'required',
             'meta_key' => 'required',
             'category' => 'required',
             'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        
+
 
         $blog = Blog::find($id);
         $blog->title = $request->title;
@@ -151,7 +151,7 @@ class BlogController extends Controller
         $blog->save();
         return redirect()->route('blog.index')
                          ->with('update','Blog Has Been Updated Successfully');
-        
+
     }
 
     /**
@@ -172,7 +172,7 @@ class BlogController extends Controller
         return redirect()->route('blog.index')
                          ->with('delete','Blog Has Been Deleted Successfully');
     }
- 
-   
+
+
 
 }
